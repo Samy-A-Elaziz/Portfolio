@@ -129,6 +129,11 @@ p span{
         margin-top: 20px;
         margin-right: -52px;
     }
+    .content{
+    margin-top: 10%;
+    width: 88%;
+    padding: 20px;
+    }
     .content .image p,
     .content .image img{
         width: 338px;

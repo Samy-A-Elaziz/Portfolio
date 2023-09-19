@@ -1,0 +1,163 @@
+*{
+    font-family: sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black; 
+}
+
+nav{
+    display: flex;
+    width: 84%;
+    margin: auto;
+    padding: 0;
+    justify-content: space-around;
+    
+}
+
+nav ul{
+    margin-top: 20px;
+    margin-right: -246px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 15px 8px;
+    font-size: initial;
+    padding: 2px;
+}
+
+.home{
+    border-left: 3px solid #004aad;
+}
+
+nav ul li:hover{
+    border-left: 3px solid #004aad;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+nav img{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+}
+
+.content{
+    margin-top: 10%;
+    width: 95%;
+    padding: 20px;
+}
+
+.content .paragraph{
+    padding-top: 2%;
+    width: 45%;
+    margin-right: 5%;
+    float: left;
+}
+
+.content .image{
+    width: 45%;
+    height: 310px;
+    margin-left: 5%;
+    float: left;
+}
+
+.content .image p,
+.content .image img{
+    width: 428px;
+    height: 400px;
+    position: fixed;
+    border-radius: 50%;
+    color: #004aad;
+    overflow: hidden;
+    cursor: none;
+    bottom: 100px;
+    right: 74px;
+}
+
+.content .image p{
+    z-index: -10020;
+}
+
+.content .image img:hover{
+    border-bottom: 8px solid transparent;
+    border-top: 8px solid transparent;
+}
+
+.contact .image,
+.content .paragraph::selection{
+    background-color: black;
+}
+
+.me{
+    font-size: 92px;
+}
+
+p span{
+    color: #004aad;
+}
+
+.major{
+    color: #1e3b62;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.contact{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.contact .icons i{
+    font-size: 40px;
+    color:  #1e3b62;
+    margin-left: 10px;
+}
+
+@media(max-width: 700px){
+    nav ul{
+        margin-top: 20px;
+        margin-right: -52px;
+    }
+    .content .image p,
+    .content .image img{
+        width: 338px;
+        height: 325px;
+        position: fixed;
+        border-radius: 50%;
+        color: #004aad;
+        overflow: hidden;
+        cursor: none;
+        bottom: 100px;
+        right: 40px;
+    }
+    .content .paragraph{
+        padding-top: 2%;
+        width: 95%;
+        margin-right: 5%;
+        float: left;
+    }
+    .me{
+        font-size: 64px;
+    }
+    .major{
+        color: #1e3b62;
+        font-size: 19px;
+        font-weight: bold;
+    }
+    .contact .icons i{
+        font-size: 30px;
+        color:  #1e3b62;
+        margin-left: 10px;
+    }
+}

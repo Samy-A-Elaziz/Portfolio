@@ -1,0 +1,137 @@
+*{
+    font-family: sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar{
+    background: #1e3b62;
+    width: 2px;
+}
+
+body{
+    background-color: black; 
+}
+
+nav{
+    display: flex;
+    width: 84%;
+    margin: auto;
+    padding: 0;
+    justify-content: space-around;
+    
+}
+
+nav ul{
+    margin-top: 20px;
+    margin-right: -246px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 15px 8px;
+    font-size: initial;
+    padding: 2px;
+}
+
+.projects{
+    border-left: 3px solid #004aad;
+}
+
+nav ul li:hover{
+    border-left: 3px solid #004aad;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+nav img{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+}
+
+.content{
+    margin: auto;
+    margin-top: 3%;
+    padding: 24px;
+    font-family: sans-serif;
+    font-size: 30px;
+}
+
+.content .posters .posters-pho{
+    background-color: #004aad;
+    border-radius: 20px;
+    margin-left: 6%;
+    overflow-x: auto;
+    display: flex;
+}
+
+.content .posters .posters-pho::-webkit-scrollbar{
+    color: whitesmoke;
+}
+
+.content .posters .posters-pho img{
+    margin: 17px;
+    width: 268px;
+    height: 414px;
+    border: 1px solid #1e3b62;
+}
+
+.content .cards{
+    margin-top: 4%;
+}
+
+.content .cards .cards-pho{
+    background-color: #004aad;
+    border-radius: 20px;
+    margin-left: 6%;
+    overflow-x: auto;
+    display: flex;
+}
+
+.content .cards .cards-pho div{
+    margin: 17px;
+}
+
+.content .cards .cards-pho div img{
+    margin-top: 2%;
+    width: 400px;
+    height: 200px;
+    border: 1px solid #1e3b62;
+}
+
+.contact{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.contact .icons i{
+    font-size: 40px;
+    color:  #1e3b62;
+    margin-left: 10px;
+}
+
+@media(max-width: 700px){
+    nav ul{
+        margin-top: 20px;
+        margin-right: -52px;
+    }
+    .contact .icons i{
+        font-size: 30px;
+        color:  #1e3b62;
+        margin-left: 10px;
+    }
+    .content .cards .cards-pho div img{
+        margin-top: 2%;
+        width: 260px;
+        height: 130px;
+        border: 1px solid #1e3b62;
+    }
+}

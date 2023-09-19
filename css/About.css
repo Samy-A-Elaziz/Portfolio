@@ -1,0 +1,97 @@
+*{
+    font-family: sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black; 
+}
+
+nav{
+    display: flex;
+    width: 84%;
+    margin: auto;
+    padding: 0;
+    justify-content: space-around;
+    
+}
+
+nav ul{
+    margin-top: 20px;
+    margin-right: -246px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 15px 8px;
+    font-size: initial;
+    padding: 2px;
+}
+
+.about{
+    border-left: 3px solid #004aad;
+}
+
+nav ul li:hover{
+    border-left: 3px solid #004aad;
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+
+nav img{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+}
+
+.content{
+    margin: auto;
+    margin-top: 3%;
+    padding: 24px;
+    font-family: sans-serif;
+    font-size: 30px;
+}
+
+.content .paragraph{
+    font-family: cursive;
+    background-color: #004aad;
+    border-radius: 20px;
+    color: black;
+    padding: 10px;
+    margin-left: 31px;
+}
+
+.content .paragraph::selection{
+    background-color: blueviolet;
+}
+
+.contact{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.contact .icons i{
+    font-size: 40px;
+    color:  #1e3b62;
+    margin-left: 10px;
+}
+
+@media(max-width: 700px){
+    nav ul{
+        margin-top: 20px;
+        margin-right: -52px;
+    }
+    .contact .icons i{
+        font-size: 30px;
+        color:  #1e3b62;
+        margin-left: 10px;
+    }
+}

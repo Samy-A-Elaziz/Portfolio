@@ -1,0 +1,804 @@
+/* ==========================================================================
+   SAMY ABDELAZIZ — PORTFOLIO STYLESHEET
+   ==========================================================================
+   This file is organized into clearly labeled sections so it is easy for a
+   beginner to find what they need:
+
+   1. Design Tokens (colors, fonts, spacing variables)
+   2. Global Resets & Helpers
+   3. Navbar
+   4. Buttons
+   5. Hero Section
+   6. About Section
+   7. Skills Section
+   8. Projects Section
+   9. Certificates Section  (License & Certificate)
+   10. Achievements Section (Achievements & Participants)
+   11. Services Section     (Service / Order Now)
+   12. Contact Section
+   13. Footer
+   14. Back-to-Top Button
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   All colors, fonts and spacing live here as CSS variables. Change a value
+   once here and it updates everywhere on the site.
+   -------------------------------------------------------------------------- */
+:root {
+    /* Brand colors */
+    --clr-primary: #3B82F6;
+    --clr-secondary: #06B6D4;
+    --clr-accent: #10B981;
+    --clr-text-main: #F8FAFC;
+    --clr-text-muted: #94A3B8;
+
+    /* Backgrounds & surfaces */
+    --clr-bg-deep: #050816;
+    --clr-card-base: rgba(17, 24, 39, 0.7);
+    --clr-border-glass: rgba(255, 255, 255, 0.08);
+    --gradient-hero: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-secondary) 50%, var(--clr-accent) 100%);
+
+    /* Effects */
+    --glass-blur: blur(16px);
+    --transition-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Fonts */
+    --font-primary: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Layout */
+    --navbar-height: 70px;
+}
+
+/* Light theme overrides (toggled by adding data-theme="light" on <html>) */
+[data-theme="light"] {
+    --clr-text-main: #0F172A;
+    --clr-text-muted: #475569;
+    --clr-bg-deep: #F8FAFC;
+    --clr-card-base: rgba(255, 255, 255, 0.8);
+    --clr-border-glass: rgba(15, 23, 42, 0.08);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESETS & HELPERS
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+}
+
+body {
+    background-color: var(--clr-bg-deep);
+    color: var(--clr-text-main);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.5s var(--transition-premium), color 0.5s var(--transition-premium);
+}
+
+img { max-width: 100%; display: block; }
+
+/* Subtle alternating background tint used on every other section */
+.accent-bg { background: rgba(255, 255, 255, 0.015); }
+[data-theme="light"] .accent-bg { background: rgba(15, 23, 42, 0.015); }
+
+/* The small circle that follows the mouse (see assets/js/cursor.js).
+   Hidden automatically on touch devices since there is no mousemove there. */
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--clr-secondary);
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@media (hover: none) {
+    .custom-cursor-follower { display: none; }
+}
+
+/* Centered, max-width content wrapper used by every section */
+.grid-container {
+    display: grid;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.standard-padding { padding: 8rem 0; }
+.text-center { text-align: center; }
+
+/* Frosted glass card used across the site (skills, projects, certs, etc.) */
+.glass-card {
+    background: var(--clr-card-base);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--clr-border-glass);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: transform 0.4s var(--transition-premium), border-color 0.4s var(--transition-premium), box-shadow 0.4s var(--transition-premium);
+}
+
+.glass-card:hover { border-color: rgba(6, 182, 212, 0.4); }
+
+.gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.section-header-centered {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 0 1rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.section-subtitle {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--clr-primary);
+    font-weight: 600;
+}
+
+.accent-bar {
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-hero);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. NAVBAR
+   NOTE: the wrapper class below (.nav-container) must match the class used
+   in index.html. A previous version of this file had a mismatched class
+   name (.navbar-container) which broke the whole navbar layout, including
+   the logo position. That bug is fixed here.
+   -------------------------------------------------------------------------- */
+.main-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+[data-theme="light"] .main-navbar {
+    background: rgba(255, 255, 255, 0.65);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Main flex row that holds logo + menu + actions */
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Logo sits on the LEFT (fixes the "logo position" bug from before) */
+.nav-logo-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0.75rem;
+    height: 70%;
+    flex-shrink: 0;
+}
+
+.logo-image-mask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.navbar-custom-logo {
+    width: auto;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.nav-logo-wrapper:hover { transform: translateY(-1px); }
+
+.nav-logo-wrapper:hover .navbar-custom-logo {
+    transform: rotate(5deg) scale(1.05);
+    filter: hue-rotate(55deg) contrast(120%) drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
+}
+
+/* Nav links sit in the CENTER, and grow to fill remaining space */
+.nav-menu { flex: 1; display: flex; justify-content: center; }
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.75rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active-route { color: var(--clr-secondary); }
+
+/* Theme toggle + hamburger sit on the RIGHT */
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--clr-text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle-btn:hover { background-color: rgba(255, 255, 255, 0.05); }
+[data-theme="light"] .theme-toggle-btn:hover { background-color: rgba(15, 23, 42, 0.05); }
+
+/* Only show the icon that matches the current theme */
+[data-theme="dark"] .sun-icon { display: block; }
+[data-theme="dark"] .moon-icon { display: none; }
+[data-theme="light"] .sun-icon { display: none; }
+[data-theme="light"] .moon-icon { display: block; }
+
+.mobile-hamburger { display: none; }
+
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS
+   -------------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s var(--transition-premium);
+}
+
+.btn-primary { background: var(--gradient-hero); color: #F8FAFC; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3); }
+
+.btn-secondary {
+    background: transparent;
+    color: var(--clr-text-main);
+    border: 1px solid var(--clr-border-glass);
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--clr-secondary); }
+
+.btn-tertiary { background: transparent; color: var(--clr-text-main); text-decoration: underline; }
+.btn-tertiary:hover { color: var(--clr-secondary); }
+
+.btn-small { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
+.btn-full-width { width: 100%; }
+
+
+/* --------------------------------------------------------------------------
+   5. HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: var(--navbar-height);
+}
+
+.hero-particles-target {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-glow-blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(16,185,129,0) 70%);
+    z-index: 2;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.hero-wrapper { grid-template-columns: 1.2fr 0.8fr; align-items: center; z-index: 3; gap: 4rem; }
+
+.hero-badge-intro {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--clr-accent);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+}
+
+.typing-container-wrapper { font-size: 1.65rem; font-weight: 600; margin-bottom: 2rem; min-height: 42px; }
+
+.hero-description { color: var(--clr-text-muted); font-size: 1.15rem; max-width: 600px; margin-bottom: 3rem; }
+
+.hero-action-cluster { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
+
+.hero-visual-frame { position: relative; display: flex; justify-content: center; align-items: center; width: 100%; }
+
+.circular-glow-frame {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: transform 0.6s var(--transition-premium);
+}
+
+.gradient-ring-border {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, var(--clr-secondary) 0%, var(--clr-accent) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 3;
+    box-shadow: 0 0 20px rgba(6, 182, 214, 0.2), 0 0 40px rgba(16, 185, 129, 0.1);
+    transition: transform 0.6s var(--transition-premium), box-shadow 0.6s var(--transition-premium);
+}
+
+.circular-image-container {
+    position: relative;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    background: var(--clr-card-base);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-profile-image {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: contrast(102%);
+    transition: transform 0.6s var(--transition-premium);
+    position: relative;
+    z-index: 1;
+}
+
+.circular-glow-frame:hover { transform: translateY(-6px); }
+.circular-glow-frame:hover .gradient-ring-border { transform: scale(1.02); box-shadow: 0 0 30px rgba(6, 182, 214, 0.4), 0 0 60px rgba(16, 185, 129, 0.3); }
+.circular-glow-frame:hover .hero-profile-image { transform: scale(1.05); }
+.circular-glow-frame:hover .matrix-mesh-overlay { opacity: 0.4; }
+
+.matrix-mesh-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(rgba(6, 182, 214, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 214, 0.04) 1px, transparent 1px);
+    background-size: 14px 14px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+}
+
+.scroll-down-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 3; }
+
+.mouse-scroller { width: 26px; height: 44px; border: 2px solid var(--clr-text-muted); border-radius: 15px; position: relative; }
+
+.wheel-node {
+    width: 4px; height: 8px;
+    background-color: var(--clr-secondary);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheelAnime 1.6s infinite ease-in-out;
+}
+
+@keyframes scrollWheelAnime {
+    0% { top: 6px; opacity: 1; }
+    100% { top: 22px; opacity: 0; }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. ABOUT SECTION
+   -------------------------------------------------------------------------- */
+.about-grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
+
+.interests-tag-cloud { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+
+.interest-tag {
+    background: var(--clr-card-base);
+    border: 1px solid var(--clr-border-glass);
+    padding: 0.5rem 1.25rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--clr-secondary); }
+
+.timeline-heading { margin-bottom: 2rem; font-family: var(--font-heading); }
+.premium-timeline { position: relative; border-left: 2px solid var(--clr-border-glass); padding-left: 2rem; }
+.timeline-item { position: relative; margin-bottom: 2.5rem; }
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-marker {
+    position: absolute;
+    left: calc(-2rem - 7px);
+    top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    border: 2px solid var(--clr-bg-deep);
+}
+
+.timeline-date { font-weight: 700; color: var(--clr-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.timeline-institution { color: var(--clr-text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+
+/* --------------------------------------------------------------------------
+   7. SKILLS SECTION
+   -------------------------------------------------------------------------- */
+.skills-grid-wrapper { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+
+.category-icon-header { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; margin-bottom: 2rem; }
+
+.skill-item-list { list-style: none; }
+.skill-item-list li { margin-bottom: 1.5rem; }
+.skill-item-list li:last-child { margin-bottom: 0; }
+
+.skill-title { display: block; font-size: 0.95rem; font-weight: 500; margin-bottom: 0.5rem; }
+
+.skill-meter { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+
+.skill-meter .fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-hero);
+    border-radius: 3px;
+    transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. PROJECTS SECTION
+   -------------------------------------------------------------------------- */
+.projects-matrix-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; }
+
+.project-portfolio-card { padding: 0; overflow: hidden; }
+
+.project-image-wrapper { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
+
+.project-placeholder-visual {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.project-card-hover-actions {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-portfolio-card:hover .project-card-hover-actions { opacity: 1; }
+
+.btn-icon-link {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--clr-card-base);
+    color: var(--clr-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--clr-border-glass);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-icon-link:hover { border-color: var(--clr-secondary); color: var(--clr-secondary); transform: translateY(-3px); }
+
+.project-content-body { padding: 2rem; }
+.project-content-body h4 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 0.5rem; }
+.project-content-body p { color: var(--clr-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+.badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tech-badge {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--clr-border-glass);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. CERTIFICATES SECTION (License & Certificate)
+   -------------------------------------------------------------------------- */
+.cards-layout { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+.cert-issuer { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+.cert-card h4 { margin-bottom: 0.5rem; font-family: var(--font-heading); }
+.cert-card p { color: var(--clr-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+
+/* "View Credential" link shown on every certificate card (task #5) */
+.cert-credential-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--clr-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+.cert-credential-link:hover { text-decoration: underline; }
+
+
+/* --------------------------------------------------------------------------
+   10. ACHIEVEMENTS SECTION (Achievements & Participants)
+   -------------------------------------------------------------------------- */
+.counters-wrapper { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+.counter-number { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 700; line-height: 1; }
+.counter-suffix { font-size: 2rem; font-weight: 700; color: var(--clr-accent); }
+.counter-label { margin-top: 0.5rem; font-size: 0.95rem; color: var(--clr-text-muted); }
+
+.achievements-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+.achievement-card { display: flex; align-items: flex-start; gap: 1rem; }
+.achievement-icon { font-size: 1.75rem; line-height: 1; }
+.achievement-card h4 { font-family: var(--font-heading); font-size: 1.05rem; margin-bottom: 0.35rem; }
+.achievement-card p { color: var(--clr-text-muted); font-size: 0.9rem; }
+
+
+/* --------------------------------------------------------------------------
+   11. SERVICES SECTION (Service / Order Now)
+   -------------------------------------------------------------------------- */
+.services-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+
+.service-card { display: flex; flex-direction: column; }
+.service-card h4 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.75rem; }
+.service-card p { color: var(--clr-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+
+.service-features { list-style: none; margin-bottom: 2rem; }
+.service-features li {
+    font-size: 0.9rem;
+    color: var(--clr-text-muted);
+    padding-left: 1.4rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+}
+.service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--clr-accent);
+    font-weight: 700;
+}
+
+/* The "Order Now" button — see app.js for how the mailto subject is built */
+.service-order-btn { align-self: flex-start; }
+
+
+/* --------------------------------------------------------------------------
+   12. CONTACT SECTION
+   -------------------------------------------------------------------------- */
+.contact-grid { grid-template-columns: 1.2fr 0.8fr; gap: 4rem; }
+
+.form-group-wrapper { margin-bottom: 1.5rem; }
+.form-group-wrapper label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: var(--clr-text-muted);
+}
+
+.form-field-input {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--clr-border-glass);
+    border-radius: 6px;
+    padding: 1rem;
+    color: var(--clr-text-main);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-field-input:focus { outline: none; border-color: var(--clr-primary); }
+.error-msg-span { color: #EF4444; font-size: 0.8rem; font-weight: 500; margin-top: 0.25rem; display: none; }
+
+.hidden-alert-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--clr-accent);
+    display: none;
+    font-weight: 600;
+    text-align: center;
+}
+
+.contact-details-panel { display: flex; flex-direction: column; gap: 2rem; }
+.detail-block-item h5 { font-family: var(--font-heading); margin-bottom: 0.5rem; }
+.detail-block-item .contact-email-link { text-decoration: none; font-weight: 600; }
+.detail-block-item .contact-location { color: var(--clr-text-muted); font-size: 0.95rem; margin-top: 0.25rem; }
+
+.contact-social-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.contact-social-row a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-border-glass);
+    color: var(--clr-text-main);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.contact-social-row a:hover { border-color: var(--clr-secondary); color: var(--clr-secondary); transform: translateY(-3px); }
+
+
+/* --------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+.global-footer-node {
+    border-top: 1px solid var(--clr-border-glass);
+    padding: 4rem 0 2rem;
+    background: var(--clr-bg-deep);
+}
+
+.footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+.footer-columns {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand img { margin-bottom: 1rem; }
+.footer-brand p { color: var(--clr-text-muted); font-size: 0.9rem; margin-top: 0.75rem; max-width: 320px; }
+.footer-heading { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 1rem; }
+
+.footer-link-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-link-list a { color: var(--clr-text-muted); text-decoration: none; font-size: 0.92rem; transition: color 0.3s ease; }
+.footer-link-list a:hover { color: var(--clr-secondary); }
+
+.footer-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--clr-border-glass);
+    font-size: 0.85rem;
+    color: var(--clr-text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   14. BACK-TO-TOP BUTTON
+   Fixed circular button in the bottom-right corner. It stays hidden until
+   the user scrolls down (handled in app.js) and always floats above other
+   content — this replaces the old button that had no working click handler
+   and sat awkwardly inline inside the footer.
+   -------------------------------------------------------------------------- */
+.back-to-top {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--gradient-hero);
+    color: #F8FAFC;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { transform: translateY(-3px); }

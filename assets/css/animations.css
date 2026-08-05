@@ -1,0 +1,118 @@
+/* ==========================================================================
+   ANIMATIONS
+   Scroll-reveal effects, the boot-up loading screen, the top reading
+   progress bar, and the blinking typing cursor.
+   ========================================================================== */
+
+/* Elements start hidden/shifted, then animate in once JS adds
+   "reveal-active" (see assets/js/animations.js) */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.scroll-reveal.reveal-active { opacity: 1; transform: translateY(0); }
+
+.fade-left { transform: translateX(-40px); }
+.scroll-reveal.fade-left.reveal-active { transform: translateX(0); }
+
+.fade-right { transform: translateX(40px); }
+.scroll-reveal.fade-right.reveal-active { transform: translateX(0); }
+
+.scale-up { transform: scale(0.95) translateY(20px); }
+.scroll-reveal.scale-up.reveal-active { transform: scale(1) translateY(0); }
+
+/* Full-screen loading overlay shown while the page first loads */
+.global-loader-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #050816;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s cubic-bezier(0.7, 0, 0.3, 1), visibility 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.global-loader-overlay.fade-out-complete { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.loader-content { text-align: center; width: 100%; max-width: 320px; }
+
+.loader-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    font-size: 1.1rem;
+    color: #F8FAFC;
+    display: block;
+    margin-bottom: 1.5rem;
+    animation: pulseText 2s infinite ease-in-out;
+}
+
+.loader-bar-wrapper {
+    width: 100%; height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.loader-bar-fill {
+    width: 0%; height: 100%;
+    background: linear-gradient(90deg, #3B82F6, #06B6D4);
+    position: absolute;
+    animation: fillLoadingBar 2.5s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
+}
+
+.loader-status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #94A3B8;
+    margin-top: 1rem;
+    display: block;
+}
+
+/* Thin bar at the very top of the page showing scroll progress */
+.scroll-progress-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    z-index: 2000;
+    background: transparent;
+    pointer-events: none;
+}
+
+.scroll-progress-bar {
+    width: 0%; height: 100%;
+    background: linear-gradient(90deg, #3B82F6 0%, #06B6D4 50%, #10B981 100%);
+    transition: width 0.1s linear;
+}
+
+/* Blinking "|" cursor at the end of the typing text in the hero section */
+.typing-cursor-node::after {
+    content: '|';
+    animation: blinkCursor 0.8s step-end infinite;
+    color: var(--clr-secondary);
+    margin-left: 3px;
+    font-weight: 400;
+}
+
+@keyframes fillLoadingBar {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+@keyframes pulseText {
+    0%, 100% { opacity: 0.6; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes blinkCursor {
+    from, to { color: transparent; }
+    50% { color: var(--clr-secondary); }
+}

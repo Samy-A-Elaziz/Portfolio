@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Samy Abdelaziz - Portfolio. Combining Veterinary Medicine with Data Analytics, Business Intelligence, and AI Automation.">
+    <meta name="keywords" content="Samy Abdelaziz, Data Analyst, Veterinary Medicine, AI, Power BI, Python, Alexandria University">
+    <meta name="author" content="Samy Abdelaziz">
+
+    <!-- Open Graph / Facebook preview tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Samy Abdelaziz | Data Analyst">
+    <meta property="og:description" content="Bridging Veterinary Medicine and Data Analytics through Python, Power BI and AI.">
+    <meta property="og:image" content="assets/images/professional_personal_photo.png">
+
+    <title>Samy Abdelaziz | Data Analyst</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets: style.css = layout/colors, animations.css = motion, responsive.css = breakpoints -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+    <!-- Custom circle that follows the mouse (desktop only, see assets/js/cursor.js) -->
+    <div class="custom-cursor-follower" id="customCursor" aria-hidden="true"></div>
+
+    <!-- Thin bar at the very top that fills in as the visitor scrolls down the page -->
+    <div class="scroll-progress-container" aria-hidden="true">
+        <div class="scroll-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Loading screen shown briefly while the page's images/fonts finish loading -->
+    <div id="loader" class="global-loader-overlay" role="dialog" aria-modal="true" aria-label="Loading portfolio">
+        <div class="loader-content">
+            <span class="loader-name">SAMY ABDELAZIZ</span>
+            <div class="loader-bar-wrapper">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <span class="loader-status">Loading...</span>
+        </div>
+    </div>
+
+    <!-- ==================================================================
+         NAVIGATION BAR
+         Layout: logo (left) — nav links (center) — theme toggle + hamburger (right)
+         ================================================================== -->
+    <header class="main-navbar" id="navbar">
+        <div class="nav-container">
+
+            <a href="#hero" class="nav-logo-wrapper" aria-label="Samy Abdelaziz - Home">
+                <div class="logo-image-mask">
+                    <img src="assets/images/logo.png" alt="Samy Abdelaziz logo" class="navbar-custom-logo">
+                </div>
+            </a>
+
+            <nav class="nav-menu" id="navMenu" role="navigation">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link active-route">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#certificates" class="nav-link">License &amp; Certificate</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements &amp; Participants</a></li>
+                    <li><a href="#services" class="nav-link">Service</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle light/dark theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="mobile-hamburger" id="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==============================================================
+             HOME / HERO
+             ============================================================== -->
+        <section id="hero" class="hero-section">
+            <canvas id="particlesCanvas" class="hero-particles-target" aria-hidden="true"></canvas>
+            <div class="hero-glow-blob" id="mouseGlowBlob" aria-hidden="true"></div>
+
+            <div class="hero-wrapper grid-container">
+                <div class="hero-text-content scroll-reveal fade-left">
+                    <span class="hero-badge-intro">Data Analyst &amp; Veterinary Medicine Student</span>
+                    <h1 class="hero-title">Samy Abdelaziz</h1>
+                    <div class="typing-container-wrapper">
+                        <span class="static-prefix">Expertise in </span>
+                        <span id="typingTarget" class="typing-dynamic-string gradient-text"></span>
+                    </div>
+                    <p class="hero-description">
+                        I am a student at the Faculty of Veterinary Medicine, Alexandria University, with a strong academic interest in data science and its practical applications in healthcare and biomedical research. Alongside my studies, I have completed certified training in data science that has strengthened my analytical, statistical, and data interpretation skills.
+                    </p>
+                    <div class="hero-action-cluster">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="assets/resume/Samy_Abdelaziz_CV.pdf" download class="btn btn-secondary">Download CV</a>
+                        <a href="#contact" class="btn btn-tertiary">Contact Me</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual-frame scroll-reveal fade-right">
+                    <div class="circular-glow-frame">
+                        <div class="gradient-ring-border"></div>
+                        <div class="circular-image-container">
+                            <div class="matrix-mesh-overlay"></div>
+                            <img src="assets/images/professional_personal_photo.png" alt="Portrait of Samy Abdelaziz" class="hero-profile-image" loading="eager">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-down-indicator" aria-hidden="true">
+                <a href="#about" aria-label="Scroll down to About section">
+                    <div class="mouse-scroller"><div class="wheel-node"></div></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             ABOUT
+             ============================================================== -->
+        <section id="about" class="about-section standard-padding">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">01 / About Me</span>
+                <h2 class="section-title">Where Medicine Meets Data</h2>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="about-grid grid-container">
+                <div class="about-narrative scroll-reveal fade-left">
+                    <h3>Bridging Clinical Knowledge and Data Science</h3>
+                    <p>My path combines the <strong>Faculty of Veterinary Medicine at Alexandria University</strong> with hands-on training in data science. I specialize in exploring and processing data to support real business and healthcare decisions, using the same careful, methodical approach I apply to clinical problems.</p>
+
+                    <div class="interests-tag-cloud">
+                        <span class="interest-tag"><i class="tag-dot"></i> Data Analysis</span>
+                        <span class="interest-tag"><i class="tag-dot"></i> Artificial Intelligence</span>
+                        <span class="interest-tag"><i class="tag-dot"></i> Business Intelligence</span>
+                        <span class="interest-tag"><i class="tag-dot"></i> Veterinary Medicine</span>
+                        <span class="interest-tag"><i class="tag-dot"></i> Web Development</span>
+                    </div>
+                </div>
+
+                <div class="about-chronology scroll-reveal fade-right">
+                    <h3 class="timeline-heading">Education &amp; Experience</h3>
+                    <div class="premium-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-body-box glass-card">
+                                <span class="timeline-date">Bachelor of Veterinary Medicine</span>
+                                <h4>Alexandria University</h4>
+                                <p class="timeline-institution">September 2025 – July 2030</p>
+                                <p>Studying animal pathology, physiological diagnostics, and clinical case management.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-body-box glass-card">
+                                <span class="timeline-date">Data Analytics Specialist Trainee</span>
+                                <h4>Digital Egypt Pioneers Initiative (DEPI)</h4>
+                                <p class="timeline-institution">September 2025 – August 2026</p>
+                                <p>Trained on Power Query, Power BI, Power Pivot, and SQL to build KPIs and manage databases.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-body-box glass-card">
+                                <span class="timeline-date">Data Science &amp; AI Trainee</span>
+                                <h4>Digital Egypt Cubs Initiative (DECI) / Udacity</h4>
+                                <p class="timeline-institution">December 2023 – September 2024</p>
+                                <p>Trained as a data scientist to explore, clean, and analyze data using Python and Pandas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             SKILLS
+             ============================================================== -->
+        <section id="skills" class="skills-section standard-padding accent-bg">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">02 / Technical Toolkit</span>
+                <h2 class="section-title">Skills &amp; Technologies</h2>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="skills-grid-wrapper grid-container">
+                <div class="skill-category-card glass-card scroll-reveal scale-up">
+                    <div class="category-icon-header">📊 Data Science</div>
+                    <ul class="skill-item-list">
+                        <li><span class="skill-title">Data Wrangling</span><div class="skill-meter"><div class="fill" data-width="92%"></div></div></li>
+                        <li><span class="skill-title">Data Visualization</span><div class="skill-meter"><div class="fill" data-width="90%"></div></div></li>
+                        <li><span class="skill-title">Data Analysis</span><div class="skill-meter"><div class="fill" data-width="92%"></div></div></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category-card glass-card scroll-reveal scale-up">
+                    <div class="category-icon-header">/&gt; Software &amp; Programming</div>
+                    <ul class="skill-item-list">
+                        <li><span class="skill-title">Python (Pandas)</span><div class="skill-meter"><div class="fill" data-width="90%"></div></div></li>
+                        <li><span class="skill-title">SQL</span><div class="skill-meter"><div class="fill" data-width="85%"></div></div></li>
+                        <li><span class="skill-title">Power BI &amp; Excel</span><div class="skill-meter"><div class="fill" data-width="90%"></div></div></li>
+                        <li><span class="skill-title">Matplotlib</span><div class="skill-meter"><div class="fill" data-width="80%"></div></div></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category-card glass-card scroll-reveal scale-up">
+                    <div class="category-icon-header">🌐 Languages</div>
+                    <ul class="skill-item-list">
+                        <li><span class="skill-title">Arabic (Native)</span><div class="skill-meter"><div class="fill" data-width="100%"></div></div></li>
+                        <li><span class="skill-title">English (Working Proficiency)</span><div class="skill-meter"><div class="fill" data-width="55%"></div></div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             PROJECTS
+             ============================================================== -->
+        <section id="projects" class="projects-section standard-padding">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">03 / Featured Work</span>
+                <h2 class="section-title">Projects</h2>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="projects-matrix-grid grid-container">
+                <div class="project-portfolio-card glass-card scroll-reveal">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder-visual" style="background:#1e1b4b;">📈</div>
+                        <div class="project-card-hover-actions">
+                            <a href="https://github.com/samy-a-elaziz" class="btn-icon-link" aria-label="Source code" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                        </div>
+                    </div>
+                    <div class="project-content-body">
+                        <h4>Business Data Dashboard</h4>
+                        <p>An operational KPI dashboard built to track performance and support decision-making using Power BI and DAX.</p>
+                        <div class="badge-row">
+                            <span class="tech-badge">Power BI</span>
+                            <span class="tech-badge">DAX</span>
+                            <span class="tech-badge">Excel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-portfolio-card glass-card scroll-reveal">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder-visual" style="background:#022c22;">📊</div>
+                        <div class="project-card-hover-actions">
+                            <a href="https://github.com/samy-a-elaziz" class="btn-icon-link" aria-label="Source code" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                        </div>
+                    </div>
+                    <div class="project-content-body">
+                        <h4>Exploratory Data Analysis Project</h4>
+                        <p>Cleaned and explored a real-world dataset with Python and Pandas to uncover trends and answer business questions.</p>
+                        <div class="badge-row">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Pandas</span>
+                            <span class="tech-badge">Matplotlib</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-portfolio-card glass-card scroll-reveal">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder-visual" style="background:#172554;">🐾</div>
+                        <div class="project-card-hover-actions">
+                            <a href="https://github.com/samy-a-elaziz" class="btn-icon-link" aria-label="Source code" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                        </div>
+                    </div>
+                    <div class="project-content-body">
+                        <h4>Telegram Chat Bot</h4>
+                        <p>An AI-powered Telegram bot with interactive menus, built in Python to answer customer inquiries automatically.</p>
+                        <div class="badge-row">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Telegram API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             LICENSE & CERTIFICATE
+             Each card has a "View Credential" link (task #5). Where a real
+             credential URL exists it is used directly; otherwise the link
+             points to the certificates page of the live portfolio so a
+             viewer can always confirm it — replace with the direct
+             certificate link whenever you have one.
+             ============================================================== -->
+        <section id="certificates" class="certifications-section standard-padding accent-bg">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">04 / Credentials</span>
+                <h2 class="section-title">License &amp; Certificate</h2>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="grid-container cards-layout">
+                <div class="cert-card glass-card scroll-reveal">
+                    <div class="cert-issuer" style="color: var(--clr-primary);">Udacity / DECI</div>
+                    <h4>Data Science and AI</h4>
+                    <p>Trained as a data scientist to explore and process data, using tools like Pandas for data manipulation and analysis.</p>
+                    <a href="http://udacity.com/certificate/e/002c9b7a-9ad8-11ee-bf77-438feec2bfb9" target="_blank" rel="noopener" class="cert-credential-link">View Credential →</a>
+                </div>
+                <div class="cert-card glass-card scroll-reveal">
+                    <div class="cert-issuer" style="color: var(--clr-secondary);">IBM</div>
+                    <h4>Artificial Intelligence</h4>
+                    <p>IBM AI course covering the fundamentals of artificial intelligence and its practical applications.</p>
+                    <a href="https://sites.google.com/view/samy-a-elaziz-portofolio/license-certificate" target="_blank" rel="noopener" class="cert-credential-link">View Credential →</a>
+                </div>
+                <div class="cert-card glass-card scroll-reveal">
+                    <div class="cert-issuer" style="color: var(--clr-accent);">DECI</div>
+                    <h4>Intro to Technology Fields</h4>
+                    <p>Fundamentals in programming, design, cybersecurity, and data analysis workflows.</p>
+                    <a href="https://sites.google.com/view/samy-a-elaziz-portofolio/license-certificate" target="_blank" rel="noopener" class="cert-credential-link">View Credential →</a>
+                </div>
+                <div class="cert-card glass-card scroll-reveal">
+                    <div class="cert-issuer" style="color: var(--clr-primary);">LinkedIn Learning</div>
+                    <h4>LinkedIn Optimization</h4>
+                    <p>Best practices for building a professional, discoverable LinkedIn profile.</p>
+                    <a href="https://sites.google.com/view/samy-a-elaziz-portofolio/license-certificate" target="_blank" rel="noopener" class="cert-credential-link">View Credential →</a>
+                </div>
+                <div class="cert-card glass-card scroll-reveal">
+                    <div class="cert-issuer" style="color: var(--clr-secondary);">Red Crescent</div>
+                    <h4>Basic Life Support</h4>
+                    <p>Certified training in emergency first response and basic life support procedures.</p>
+                    <a href="https://sites.google.com/view/samy-a-elaziz-portofolio/license-certificate" target="_blank" rel="noopener" class="cert-credential-link">View Credential →</a>
+                </div>
+                <div class="cert-card glass-card scroll-reveal">
+                    <div class="cert-issuer" style="color: var(--clr-accent);">DEPI Framework</div>
+                    <h4>Digital Marketing Fundamentals</h4>
+                    <p>Core principles of digital marketing strategy, channels, and analytics.</p>
+                    <a href="https://sites.google.com/view/samy-a-elaziz-portofolio/license-certificate" target="_blank" rel="noopener" class="cert-credential-link">View Credential →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             ACHIEVEMENTS & PARTICIPANTS
+             ============================================================== -->
+        <section id="achievements" class="stats-section standard-padding">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">05 / By the Numbers</span>
+                <h2 class="section-title">Achievements &amp; Participants</h2>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="grid-container counters-wrapper">
+                <div class="counter-box glass-card text-center">
+                    <span class="counter-number gradient-text" data-target="8">0</span><span class="counter-suffix">+</span>
+                    <p class="counter-label">Projects</p>
+                </div>
+                <div class="counter-box glass-card text-center">
+                    <span class="counter-number gradient-text" data-target="7">0</span><span class="counter-suffix">+</span>
+                    <p class="counter-label">Certificates</p>
+                </div>
+                <div class="counter-box glass-card text-center">
+                    <span class="counter-number gradient-text" data-target="10">0</span><span class="counter-suffix">+</span>
+                    <p class="counter-label">Technologies</p>
+                </div>
+                <div class="counter-box glass-card text-center">
+                    <span class="counter-number gradient-text" data-target="3">0</span><span class="counter-suffix">+</span>
+                    <p class="counter-label">Years of Training</p>
+                </div>
+            </div>
+
+            <div class="grid-container achievements-grid">
+                <div class="achievement-card glass-card scroll-reveal">
+                    <span class="achievement-icon">🏅</span>
+                    <div>
+                        <h4>DECI Geeks Participant</h4>
+                        <p>Active participant in the Digital Egypt Cubs Initiative Geeks program.</p>
+                    </div>
+                </div>
+                <div class="achievement-card glass-card scroll-reveal">
+                    <span class="achievement-icon">🩺</span>
+                    <div>
+                        <h4>Medical Marvels — Future Participant</h4>
+                        <p>Selected participant in the Medical Marvels student science initiative.</p>
+                    </div>
+                </div>
+                <div class="achievement-card glass-card scroll-reveal">
+                    <span class="achievement-icon">💧</span>
+                    <div>
+                        <h4>Cholera Kits Initiative</h4>
+                        <p>Volunteer participant supporting a public-health cholera prevention initiative.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             SERVICE
+             Each "Order Now" button is a plain mailto link — no JavaScript
+             needed. Clicking it opens the visitor's email app with
+             samyabdellaziz279@gmail.com pre-filled in "To" and the service
+             name pre-filled in "Subject" (task #4).
+             ============================================================== -->
+        <section id="services" class="services-section standard-padding accent-bg">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">06 / Hire Me</span>
+                <h2 class="section-title">Service</h2>
+                <div class="accent-bar"></div>
+                <p style="color: var(--clr-text-muted); max-width: 640px; margin: 1.5rem auto 0;">
+                    Freelance services I offer. Click "Order Now" on any service to email me directly —
+                    the subject line will already say which service you're interested in.
+                </p>
+            </div>
+
+            <div class="grid-container services-grid">
+
+                <div class="service-card glass-card scroll-reveal">
+                    <h4>🤖 Telegram Bot</h4>
+                    <p>A smart Telegram chat bot for your business that answers customer questions and showcases your services 24/7.</p>
+                    <ul class="service-features">
+                        <li>AI-powered responses to customer inquiries</li>
+                        <li>Interactive menus and buttons</li>
+                        <li>Fully customized to your business</li>
+                        <li>Python source code delivered to you</li>
+                    </ul>
+                    <a href="mailto:samyabdellaziz279@gmail.com?subject=Telegram%20Bot%20Service" class="btn btn-primary service-order-btn">Order Now</a>
+                </div>
+
+                <div class="service-card glass-card scroll-reveal">
+                    <h4>🌐 Medical Translation</h4>
+                    <p>Accurate, professional translation from English to Arabic and vice versa, especially in the medical field.</p>
+                    <ul class="service-features">
+                        <li>Web pages, Word docs, PDFs &amp; images</li>
+                        <li>Research papers and articles</li>
+                        <li>400 words per order from any source</li>
+                        <li>Field-accurate medical terminology</li>
+                    </ul>
+                    <a href="mailto:samyabdellaziz279@gmail.com?subject=Medical%20Translation%20Service" class="btn btn-primary service-order-btn">Order Now</a>
+                </div>
+
+                <div class="service-card glass-card scroll-reveal">
+                    <h4>📊 Data Analysing</h4>
+                    <p>Turning raw data into clear insights and professional reports so you can confidently plan for the future.</p>
+                    <ul class="service-features">
+                        <li>Data cleaning &amp; processing</li>
+                        <li>Exploratory Data Analysis (EDA)</li>
+                        <li>Up to 7,000 rows / 15 columns</li>
+                        <li>Python, Power BI &amp; Excel</li>
+                    </ul>
+                    <a href="mailto:samyabdellaziz279@gmail.com?subject=Data%20Analysing%20Service" class="btn btn-primary service-order-btn">Order Now</a>
+                </div>
+
+                <div class="service-card glass-card scroll-reveal">
+                    <h4>📽️ PowerPoint Design</h4>
+                    <p>Presentation design that combines precision with visual creativity to make your ideas easy to follow.</p>
+                    <ul class="service-features">
+                        <li>10 professional slides</li>
+                        <li>Modern visuals, icons &amp; color scheme</li>
+                        <li>Delivered as PPTX or PDF</li>
+                        <li>Revisions until you're satisfied</li>
+                    </ul>
+                    <a href="mailto:samyabdellaziz279@gmail.com?subject=PowerPoint%20Design%20Service" class="btn btn-primary service-order-btn">Order Now</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             CONTACT
+             (No map / location box here — the old "Geo-Location Processing
+             Node" placeholder has been removed as requested.)
+             ============================================================== -->
+        <section id="contact" class="contact-section standard-padding">
+            <div class="section-header-centered scroll-reveal">
+                <span class="section-subtitle">07 / Get In Touch</span>
+                <h2 class="section-title">Contact Me</h2>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="contact-grid grid-container">
+                <div class="contact-form-wrapper glass-card scroll-reveal fade-left">
+                    <form id="contactForm" class="premium-form-element" novalidate>
+                        <div class="form-group-wrapper">
+                            <label for="frmName">Name</label>
+                            <input type="text" id="frmName" name="name" required class="form-field-input" placeholder="Your name">
+                            <span class="error-msg-span" id="errName">Please enter your name.</span>
+                        </div>
+                        <div class="form-group-wrapper">
+                            <label for="frmEmail">Email Address</label>
+                            <input type="email" id="frmEmail" name="email" required class="form-field-input" placeholder="your@email.com">
+                            <span class="error-msg-span" id="errEmail">Please enter a valid email address.</span>
+                        </div>
+                        <div class="form-group-wrapper">
+                            <label for="frmMsg">Message</label>
+                            <textarea id="frmMsg" name="message" required class="form-field-input" rows="5" placeholder="Tell me about your project..."></textarea>
+                            <span class="error-msg-span" id="errMsg">Message must be at least 10 characters.</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full-width">Send Message</button>
+                    </form>
+                    <div id="formSuccessMessage" class="hidden-alert-box">
+                        ✓ Thanks! Your message looks good. (This demo form doesn't send email yet — see the note in app.js.)
+                    </div>
+                </div>
+
+                <div class="contact-details-panel scroll-reveal fade-right">
+                    <div class="detail-block-item glass-card">
+                        <h5>Email</h5>
+                        <p><a href="mailto:samyabdellaziz279@gmail.com" class="gradient-text contact-email-link">samyabdellaziz279@gmail.com</a></p>
+                        <p class="contact-location">Alexandria, Egypt</p>
+                    </div>
+                    <div class="detail-block-item glass-card">
+                        <h5>Find Me Online</h5>
+                        <div class="contact-social-row">
+                            <a href="mailto:samyabdellaziz279@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6l-10 7L2 6"></path><path d="M2 6h20v12H2z"></path></svg></a>
+                            <a href="https://www.linkedin.com/in/samy-a-elaziz/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                            <a href="https://github.com/samy-a-elaziz" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================================================================
+         FOOTER
+         Mirrors the same components as the real portfolio's footer:
+         Contact (email / LinkedIn / GitHub) and Freelance Accounts.
+         ================================================================== -->
+    <footer class="global-footer-node">
+        <div class="footer-container">
+            <div class="footer-columns">
+
+                <div class="footer-brand">
+                    <img src="assets/images/logo.png" alt="Samy Abdelaziz logo" style="height: 36px;">
+                    <p>Data Analyst combining Veterinary Medicine with Data Analytics, Business Intelligence and AI Automation.</p>
+                </div>
+
+                <div class="footer-contact">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-link-list">
+                        <li><a href="mailto:samyabdellaziz279@gmail.com">Email</a></li>
+                        <li><a href="https://www.linkedin.com/in/samy-a-elaziz/" target="_blank" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://github.com/samy-a-elaziz" target="_blank" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-freelance">
+                    <h5 class="footer-heading">Freelance Accounts</h5>
+                    <ul class="footer-link-list">
+                        <li><a href="https://nafezly.com/u/samy_a_elaziz" target="_blank" rel="noopener">Nafezly</a></li>
+                        <li><a href="https://khamsat.com/user/samy_a_elaziz" target="_blank" rel="noopener">Khamsat</a></li>
+                        <li><a href="https://mostaql.com/u/samy_a_elaziz" target="_blank" rel="noopener">Mostaql</a></li>
+                        <li><a href="https://kafiil.com/u/samy_a_elaziz" target="_blank" rel="noopener">Kafiil</a></li>
+                        <li><a href="https://www.upwork.com/freelancers/~01daa4f15b5bdcd8bf" target="_blank" rel="noopener">Upwork</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom-row">
+                <span>© 2026 Samy Abdelaziz. All rights reserved.</span>
+                <a href="https://sites.google.com/view/samy-a-elaziz-portofolio/home" target="_blank" rel="noopener" style="color: var(--clr-text-muted);">Original Portfolio ↗</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating back-to-top button (fixed bottom-right, fades in after scrolling — see app.js) -->
+    <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">↑</button>
+
+    <!-- Scripts load in order: small utilities first, app.js last since it uses the others -->
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/cursor.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/typing.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

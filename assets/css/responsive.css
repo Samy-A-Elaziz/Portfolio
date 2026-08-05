@@ -1,0 +1,103 @@
+/* ==========================================================================
+   RESPONSIVE LAYOUT
+   Breakpoints are listed from largest screen to smallest. Each media query
+   only overrides what needs to change at that screen width.
+   ========================================================================== */
+
+/* Extra-large / ultrawide monitors */
+@media (min-width: 1600px) {
+    .grid-container { max-width: 1500px; }
+    .hero-title { font-size: 5.5rem; }
+}
+
+/* Laptops */
+@media (max-width: 1200px) {
+    .hero-title { font-size: 3.75rem; }
+    .about-grid, .contact-grid { gap: 3rem; }
+    .footer-columns { grid-template-columns: 1fr 1fr; }
+}
+
+/* Slightly narrower laptops / large tablets: nav labels get tight, so we
+   shrink the gap and font-size a little before the hamburger menu kicks in */
+@media (max-width: 1150px) {
+    .nav-list { gap: 1.1rem; }
+    .nav-link { font-size: 0.85rem; }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .standard-padding { padding: 5rem 0; }
+
+    .hero-wrapper { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+    .hero-text-content { display: flex; flex-direction: column; align-items: center; }
+    .hero-description { margin-left: auto; margin-right: auto; }
+    .hero-action-cluster { justify-content: center; }
+    .hero-visual-frame { order: -1; max-width: 450px; margin: 0 auto; }
+    .circular-glow-frame { width: 300px; height: 300px; margin-top: 2.5rem; }
+
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+    .footer-columns { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) {
+    /* Collapse the horizontal nav into a slide-in side panel */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 360px;
+        height: 100vh;
+        background: #050816;
+        border-left: 1px solid var(--clr-border-glass);
+        padding: 6rem 2.5rem;
+        transition: right 0.4s var(--transition-premium);
+        z-index: 999;
+        justify-content: flex-start;
+    }
+
+    .nav-menu.mobile-menu-active { right: 0; }
+
+    .nav-list { flex-direction: column; align-items: flex-start; gap: 1.75rem; }
+    .nav-link { font-size: 1rem; }
+
+    /* Hamburger icon (3 bars) only appears on mobile */
+    .mobile-hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+        padding: 4px;
+    }
+
+    .mobile-hamburger .bar {
+        width: 24px; height: 2px;
+        background-color: var(--clr-text-main);
+        transition: all 0.3s ease;
+    }
+
+    /* Turn the 3 bars into an "X" when the menu is open */
+    .mobile-hamburger[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .mobile-hamburger[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+    .mobile-hamburger[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .hero-title { font-size: 2.6rem; }
+    .section-title { font-size: 2.1rem; }
+
+    .footer-bottom-row { flex-direction: column; text-align: center; }
+
+    .back-to-top { right: 1.25rem; bottom: 1.25rem; width: 44px; height: 44px; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .circular-glow-frame { width: 250px; height: 250px; }
+    .grid-container { padding: 0 1.25rem; }
+    .glass-card { padding: 1.75rem; }
+    .hero-action-cluster { flex-direction: column; align-items: stretch; }
+    .hero-action-cluster .btn { width: 100%; }
+}
